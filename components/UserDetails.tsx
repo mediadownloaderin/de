@@ -11,7 +11,7 @@ interface User {
   // Add more fields as needed
 }
 
-const UserDetails = () => {
+const UserDetails: React.FC = () => {
   const [userData, setUserData] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -19,11 +19,11 @@ const UserDetails = () => {
   const fetchData = async () => {
     try {
       // Assuming your API endpoint for details is /api/details
-      const response = await axios.get('/api/details');
+      const response = await axios.get<User>('/api/details');
       setUserData(response.data);
-      setLoading(false);
     } catch (error) {
       setError('Failed to fetch user data');
+    } finally {
       setLoading(false);
     }
   };
