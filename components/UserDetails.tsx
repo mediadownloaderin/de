@@ -3,10 +3,18 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
+interface User {
+  photo: string;
+  name: string;
+  email: string;
+  phone: string;
+  // Add more fields as needed
+}
+
 const UserDetails = () => {
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
 
   const fetchData = async () => {
     try {
@@ -15,7 +23,7 @@ const UserDetails = () => {
       setUserData(response.data);
       setLoading(false);
     } catch (error) {
-   
+      setError('Failed to fetch user data');
       setLoading(false);
     }
   };
