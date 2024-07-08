@@ -11,6 +11,7 @@ interface User {
   // Add more fields as needed
 }
 
+
 const UserDetails = () => {
   const [userData, setUserData] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
