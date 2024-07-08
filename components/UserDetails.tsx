@@ -1,12 +1,10 @@
-// File path: /components/UserDetails.tsx
-
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const UserDetails = () => {
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
 
   const fetchData = async () => {
     try {
@@ -14,8 +12,12 @@ const UserDetails = () => {
       const response = await axios.get('/api/details');
       setUserData(response.data);
       setLoading(false);
-    } catch (error) {
-      setError(error.message);
+    } catch (err) {
+      if (axios.isAxiosError(err)) {
+        setError(err.message);
+      } else {
+        setError("An unknown error occurred");
+      }
       setLoading(false);
     }
   };
