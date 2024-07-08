@@ -15,7 +15,7 @@ const UserDetails = () => {
       setUserData(response.data);
       setLoading(false);
     } catch (error) {
-      setError(error.message);
+   
       setLoading(false);
     }
   };
