@@ -64,4 +64,3 @@ const UserDetails: React.FC = () => {
 };
 
 export default UserDetails;
-
